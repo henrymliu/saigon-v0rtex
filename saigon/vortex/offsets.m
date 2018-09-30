@@ -241,6 +241,26 @@ void set_n51ap_10_2_1() {
     
 }
 
+// iPad Mini 2 (J85AP) - iOS 10.2.1 (14D27)
+void set_j85ap_10_2_1() {
+    
+    g_offsets.kernel_base = 0xFFFFFFF0061BC000; // added
+    g_offsets.kernel_text = 0xFFFFFFF007004000; // added
+    g_offsets.zone_map = 0xfffffff00755a360; // added
+    g_offsets.kernel_map = 0xfffffff0075b6058; // added
+    g_offsets.kernel_task = 0xfffffff0075b6050; // added
+    g_offsets.realhost = 0xfffffff00753ca98; // added
+    g_offsets.bzero = 0xfffffff007082140; // added
+    g_offsets.bcopy = 0xfffffff007081f80; // added (_ovbcopy)
+    g_offsets.copyin = 0xfffffff0071835dc; // added
+    g_offsets.copyout = 0xfffffff0071837e4; // added
+    g_offsets.ipc_port_alloc_special = 0xfffffff00709a060; // added
+    g_offsets.ipc_kobject_set = 0xfffffff0070ad700; // added
+    g_offsets.ipc_port_make_send = 0xfffffff007099ba4; // added
+    g_offsets.iosurfacerootuserclient_vtable = 0xfffffff006f336a0; // added
+    g_offsets.ROP_ADD_X0_X0_0x10 = 0xfffffff00650dfb0; // added
+    
+}
 
 // iPhone 5S (N53AP) - iOS 10.2.1 (14D27)
 void set_n53ap_10_2_1() {
@@ -768,6 +788,11 @@ kern_return_t offsets_determine_initializer_for_device_and_build(char * device, 
             printf("[INFO]: iPhone 5S (N51AP) running iOS 10.2.1\n");
             set_n51ap_10_2_1();
             
+        } else if(strstr("J85AP", model)) { // iPad Mini 2 - J85AP
+            
+            printf("[INFO]: iPad Mini 2 (J85AP) running iOS 10.2.1\n");
+            set_j85ap_10_2_1();
+
         } else if(strstr("N53AP", model)) { // iPhone SE - N53AP
             
             printf("[INFO]: iPhone 5S (N53AP) running iOS 10.2.1\n");
